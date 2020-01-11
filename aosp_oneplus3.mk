@@ -24,6 +24,10 @@ $(call inherit-product, device/oneplus/oneplus3/device.mk)
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 TARGET_GAPPS_ARCH := arm64
 PRODUCT_NAME := aosp_oneplus3
+
+# Vendor security patch level
+VENDOR_SECURITY_PATCH := 2019-10-01
+
 PRODUCT_DEVICE := oneplus3
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
@@ -32,5 +36,5 @@ PRODUCT_BRAND := OnePlus
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 TARGET_VENDOR := oneplus
 
-BUILD_FINGERPRINT := "OnePlus/OnePlus3/OnePlus3:8.0.0/OPR1.170623.032/02281230:user/release-keys"
+BUILD_FINGERPRINT := "OnePlus/OnePlus3/OnePlus3:9/PKQ1.181203.001/1907311932:user/release-keys"
 #XTENDED_BUILD_TYPE := OFFICIAL
