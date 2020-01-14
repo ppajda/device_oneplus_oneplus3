@@ -266,6 +266,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.2-service.clearkey
 
+# Device
+PRODUCT_PACKAGES += \
+    DeviceParts
+
 # Encryption
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
@@ -559,3 +563,4 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
