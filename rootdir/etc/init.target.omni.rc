@@ -57,6 +57,4 @@ on boot
     chmod 0666 /sys/class/graphics/fb0/oneplus_mode
     chown system graphics /sys/class/graphics/fb0/adaption_mode
     chmod 0666 /sys/class/graphics/fb0/adaption_mode
-    chown system graphics /sys/class/graphics/fb0/measured_fps
-    chmod 0666 /sys/class/graphics/fb0/measured_fps
 
