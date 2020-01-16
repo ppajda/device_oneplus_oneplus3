@@ -14,4 +14,9 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_oneplus3.mk
+    $(LOCAL_DIR)/ion_oneplus3.mk
+
+COMMON_LUNCH_CHOICES := \
+    ion_oneplus3-user \
+    ion_oneplus3-userdebug \
+    ion_oneplus3-eng

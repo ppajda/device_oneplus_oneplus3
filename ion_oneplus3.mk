@@ -21,9 +21,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/oneplus3/device.mk)
 
 # Inherit some common Xtended stuff.
-$(call inherit-product, $(CUSTOM_VENDOR_DIR)/config/common_full_phone.mk)
+$(call inherit-product, vendor/ion/config/common_full_phone.mk)
 
-PRODUCT_NAME := aosp_oneplus3
+TARGET_GAPPS_ARCH := arm64
+TARGET_BOOT_ANIMATION_RES := 1080
+
+PRODUCT_NAME := ion_oneplus3
 
 # Vendor security patch level
 VENDOR_SECURITY_PATCH := 2019-10-01
