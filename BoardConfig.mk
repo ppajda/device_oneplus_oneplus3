@@ -225,6 +225,9 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib/libui.so|libui_shim.so \
     /system/lib64/libui.so|libui_shim.so
 
+# SurfaceFlinger
+TARGET_USE_AOSP_SURFACEFLINGER := true
+
 # Thermal
 USE_DEVICE_SPECIFIC_THERMAL := true
 
