@@ -23,10 +23,8 @@
 
 $(call inherit-product, device/oneplus/oneplus3/hidl.mk)
 $(call inherit-product, device/oneplus/oneplus3/permissions.mk)
-$(call inherit-product, vendor/extras/configs/phone-xxhdpi-4096-dalvik-heap.mk)
-$(call inherit-product, vendor/extras/configs/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 $(call inherit-product, vendor/oneplus/oneplus3/oneplus3-vendor.mk)
-$(call inherit-product, device/oneplus/extras/common.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -173,13 +171,9 @@ PRODUCT_PACKAGES += \
     qdcm_calib_data_samsung_s6e3fa3_1080p_cmd_mode_dsi_panel.xml \
     qdcm_calib_data_samsung_s6e3fa5_1080p_cmd_mode_dsi_panel.xml
 
-# Doze
+# Device
 PRODUCT_PACKAGES += \
-    CustomDoze
-
-# Fingerprint
-PRODUCT_PACKAGES += \
-    OneplusPocketMode
+    DeviceParts
 
 # GPS
 PRODUCT_PACKAGES += \
