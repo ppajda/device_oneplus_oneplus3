@@ -79,8 +79,6 @@ public class KeyHandler implements DeviceKeyHandler {
         mContext = context;
 
         Resources resources = mContext.getResources();
-        mProximityCheckOnWake = resources.getBoolean(com.android.internal.R.bool.config_proximityCheckOnWake);
-        mProximityCheckTimeout = resources.getInteger(com.android.internal.R.integer.config_proximityCheckTimeout);
 
         mAudioManager = mContext.getSystemService(AudioManager.class);
         mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
@@ -97,10 +95,6 @@ public class KeyHandler implements DeviceKeyHandler {
 
         mGestureWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GestureWakeLock");
 
-        if (mProximityCheckOnWake) {
-            mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-            mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ProximityWakeLock");
-        }
     }
 
     private void ensureKeyguardManager() {
@@ -232,20 +226,8 @@ public class KeyHandler implements DeviceKeyHandler {
             }
 
             doHapticFeedback();
-        } else if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
-            Message message = getMessageForKeyEvent(scanCode);
-            boolean defaultProximity = mContext.getResources().getBoolean(com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
-            boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, defaultProximity ? 1 : 0) == 1;
-
-			if (mProximitySensor != null && proximityWakeCheckEnabled && mProximityCheckOnWake) {
-                mEventHandler.sendMessageDelayed(message, mProximityCheckTimeout);
-
-                processEvent(scanCode);
-            } else {
-                mEventHandler.sendMessage(message);
-            }
-        }
-
+        } 
+   
         return null;
     }
 
