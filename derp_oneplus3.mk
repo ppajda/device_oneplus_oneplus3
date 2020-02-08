@@ -15,27 +15,35 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from oneplus3 device
+# Inherit from cheeseburger device
 $(call inherit-product, device/oneplus/oneplus3/device.mk)
 
-# Inherit some common AEX stuff.
-$(call inherit-product, vendor/aosp/common.mk)
+# Inherit some common AOSiP stuff.
+$(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
-# Vendor security patch level
-VENDOR_SECURITY_PATCH := 2019-10-01
+# Gapps
+TARGET_GAPPS_ARCH := arm64
+TARGET_BOOT_ANIMATION_RES := 1080
+IS_PHONE := true
+TARGET_MINIMAL_APPS := false
+TARGET_INCLUDE_STOCK_ARCORE := true
 
-PRODUCT_NAME := aosp_oneplus3
+PRODUCT_NAME := derp_oneplus3
 PRODUCT_DEVICE := oneplus3
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
-
-# Boot animation
-TARGET_BOOT_ANIMATION_RES := 1080
+PRODUCT_MODEL := ONEPLUS A3003
 
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
+
+TARGET_VENDOR_PRODUCT_NAME := OnePlus3
+TARGET_VENDOR_DEVICE_NAME := OnePlus3
+
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=OnePlus3 PRODUCT_NAME=OnePlus3
 
 BUILD_FINGERPRINT := "OnePlus/OnePlus3/OnePlus3:9/PKQ1.181203.001/1907311932:user/release-keys"
 
 TARGET_VENDOR := oneplus
+

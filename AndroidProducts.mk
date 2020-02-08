@@ -14,4 +14,9 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_oneplus3.mk
+    $(LOCAL_DIR)/derp_oneplus3.mk
+
+COMMON_LUNCH_CHOICES := \
+    derp_oneplus3-user \
+    derp_oneplus3-userdebug \
+    derp_oneplus3-eng
