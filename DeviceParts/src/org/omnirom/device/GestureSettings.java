@@ -109,7 +109,6 @@ public class GestureSettings extends PreferenceFragment implements
     private AppSelectListPreference mFPLongPressApp;
     private PreferenceCategory fpGestures;
     private boolean mFpDownSwipe;
-    private static final boolean sIsOnePlus5t = android.os.Build.DEVICE.equals("OnePlus5T");
     private List<AppSelectListPreference.PackageItem> mInstalledPackages = new LinkedList<AppSelectListPreference.PackageItem>();
     private PackageManager mPm;
 
@@ -182,42 +181,10 @@ public class GestureSettings extends PreferenceFragment implements
         mRightSwipeApp.setValue(value);
         mRightSwipeApp.setOnPreferenceChangeListener(this);
 
-        if (sIsOnePlus5t) {
-            mFPDownSwipeApp = (AppSelectListPreference) findPreference(FP_GESTURE_SWIPE_DOWN_APP);
-            mFPDownSwipeApp.setEnabled(!areSystemNavigationKeysEnabled());
-            value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_10);
-            mFPDownSwipeApp.setValue(value);
-            mFPDownSwipeApp.setOnPreferenceChangeListener(this);
-
-            mFPUpSwipeApp = (AppSelectListPreference) findPreference(FP_GESTURE_SWIPE_UP_APP);
-            mFPUpSwipeApp.setEnabled(!areSystemNavigationKeysEnabled());
-            value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_11);
-            mFPUpSwipeApp.setValue(value);
-            mFPUpSwipeApp.setOnPreferenceChangeListener(this);
-
-            mFPRightSwipeApp = (AppSelectListPreference) findPreference(FP_GESTURE_SWIPE_RIGHT_APP);
-            mFPRightSwipeApp.setEnabled(true);
-            value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_12);
-            mFPRightSwipeApp.setValue(value);
-            mFPRightSwipeApp.setOnPreferenceChangeListener(this);
-
-            mFPLeftSwipeApp = (AppSelectListPreference) findPreference(FP_GESTURE_SWIPE_LEFT_APP);
-            mFPLeftSwipeApp.setEnabled(true);
-            value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_13);
-            mFPLeftSwipeApp.setValue(value);
-            mFPLeftSwipeApp.setOnPreferenceChangeListener(this);
-
-            mFPLongPressApp = (AppSelectListPreference) findPreference(FP_GESTURE_LONG_PRESS_APP);
-            mFPLongPressApp.setEnabled(true);
-            value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_14);
-            mFPLongPressApp.setValue(value);
-            mFPLongPressApp.setOnPreferenceChangeListener(this);
-        } else {
-            Preference fpGestures = findPreference(KEY_FP_GESTURE_CATEGORY);
-            Preference fpGesturesDefault = findPreference(KEY_FP_GESTURE_DEFAULT_CATEGORY);
-            getPreferenceScreen().removePreference(fpGestures);
-            getPreferenceScreen().removePreference(fpGesturesDefault);
-        }
+        Preference fpGestures = findPreference(KEY_FP_GESTURE_CATEGORY);
+        Preference fpGesturesDefault = findPreference(KEY_FP_GESTURE_DEFAULT_CATEGORY);
+        getPreferenceScreen().removePreference(fpGestures);
+        getPreferenceScreen().removePreference(fpGesturesDefault);
 
         new FetchPackageInformationTask().execute();
     }
@@ -410,13 +377,6 @@ public class GestureSettings extends PreferenceFragment implements
             mUpSwipeApp.setPackageList(mInstalledPackages);
             mLeftSwipeApp.setPackageList(mInstalledPackages);
             mRightSwipeApp.setPackageList(mInstalledPackages);
-            if (sIsOnePlus5t) {
-                mFPDownSwipeApp.setPackageList(mInstalledPackages);
-                mFPUpSwipeApp.setPackageList(mInstalledPackages);
-                mFPRightSwipeApp.setPackageList(mInstalledPackages);
-                mFPLeftSwipeApp.setPackageList(mInstalledPackages);
-                mFPLongPressApp.setPackageList(mInstalledPackages);
-            }
         }
     }
 }

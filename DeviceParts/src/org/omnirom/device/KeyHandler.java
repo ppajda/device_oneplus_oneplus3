@@ -83,14 +83,13 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
     private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
     private static final String FPC_CONTROL_PATH = "/sys/devices/soc/soc:fpc_fpc1020/proximity_state";
-    private static final String GOODIX_CONTROL_PATH = "/sys/devices/soc/soc:goodix_fp/proximity_state";
 
     private static final int GESTURE_CIRCLE_SCANCODE = 250;
-    private static final int GESTURE_V_SCANCODE = 255;
+    private static final int GESTURE_V_SCANCODE = 252;
     private static final int GESTURE_II_SCANCODE = 251;
     private static final int GESTURE_LEFT_V_SCANCODE = 253;
     private static final int GESTURE_RIGHT_V_SCANCODE = 254;
-    private static final int GESTURE_A_SCANCODE = 252;
+    private static final int GESTURE_A_SCANCODE = 255;
     private static final int GESTURE_RIGHT_SWIPE_SCANCODE = 63;
     private static final int GESTURE_LEFT_SWIPE_SCANCODE = 64;
     private static final int GESTURE_DOWN_SWIPE_SCANCODE = 65;
@@ -113,31 +112,8 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int FP_GESTURE_SWIPE_LEFT = 105;
     private static final int FP_GESTURE_SWIPE_RIGHT = 106;
     private static final int FP_GESTURE_LONG_PRESS = 305;
-    private static final boolean sIsOnePlus5t = android.os.Build.DEVICE.equals("OnePlus5T");
 
     public static final String PACKAGE_SYSTEMUI = "com.android.systemui";
-
-    private static final int[] sSupportedGestures5t = new int[]{
-        GESTURE_II_SCANCODE,
-        GESTURE_CIRCLE_SCANCODE,
-        GESTURE_V_SCANCODE,
-        GESTURE_A_SCANCODE,
-        GESTURE_LEFT_V_SCANCODE,
-        GESTURE_RIGHT_V_SCANCODE,
-        GESTURE_DOWN_SWIPE_SCANCODE,
-        GESTURE_UP_SWIPE_SCANCODE,
-        GESTURE_LEFT_SWIPE_SCANCODE,
-        GESTURE_RIGHT_SWIPE_SCANCODE,
-        KEY_DOUBLE_TAP,
-        KEY_SLIDER_TOP,
-        KEY_SLIDER_CENTER,
-        KEY_SLIDER_BOTTOM,
-        FP_GESTURE_SWIPE_DOWN,
-        FP_GESTURE_SWIPE_UP,
-        FP_GESTURE_SWIPE_LEFT,
-        FP_GESTURE_SWIPE_RIGHT,
-        FP_GESTURE_LONG_PRESS,
-    };
 
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_II_SCANCODE,
@@ -209,14 +185,8 @@ public class KeyHandler implements DeviceKeyHandler {
             mProxyIsNear = event.values[0] == 1;
             if (DEBUG_SENSOR) Log.i(TAG, "mProxyIsNear = " + mProxyIsNear + " mProxyWasNear = " + mProxyWasNear);
             if (mUseProxiCheck) {
-                if (!sIsOnePlus5t) {
-                    if (Utils.fileWritable(FPC_CONTROL_PATH)) {
+                if (Utils.fileWritable(FPC_CONTROL_PATH)) {
                         Utils.writeValue(FPC_CONTROL_PATH, mProxyIsNear ? "1" : "0");
-                    }
-                } else {
-                    if (Utils.fileWritable(GOODIX_CONTROL_PATH)) {
-                        Utils.writeValue(GOODIX_CONTROL_PATH, mProxyIsNear ? "1" : "0");
-                    }
                 }
             }
             if (mUseWaveCheck || mUsePocketCheck) {
@@ -373,11 +343,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     @Override
     public boolean canHandleKeyEvent(KeyEvent event) {
-        if (sIsOnePlus5t) {
-            return ArrayUtils.contains(sSupportedGestures5t, event.getScanCode());
-        } else {
-            return ArrayUtils.contains(sSupportedGestures, event.getScanCode());
-        }
+        return ArrayUtils.contains(sSupportedGestures, event.getScanCode());
     }
 
     @Override
@@ -471,18 +437,9 @@ public class KeyHandler implements DeviceKeyHandler {
         if (DEBUG) Log.i(TAG, "Display on");
         if (enableProxiSensor()) {
             mSensorManager.unregisterListener(mProximitySensor, mPocketSensor);
-            enableGoodix();
         }
         if (mUseTiltCheck) {
             mSensorManager.unregisterListener(mTiltSensorListener, mTiltSensor);
-        }
-    }
-
-    private void enableGoodix() {
-        if (sIsOnePlus5t) {
-            if (Utils.fileWritable(GOODIX_CONTROL_PATH)) {
-                Utils.writeValue(GOODIX_CONTROL_PATH, "0");
-            }
         }
     }
 

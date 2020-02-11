@@ -61,6 +61,12 @@ on init
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
+    # Vibrator
+    chown system system /sys/class/timed_output/vibrator/vtg_default
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+
 on late-fs
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
