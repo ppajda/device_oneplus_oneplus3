@@ -255,7 +255,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES  += \
     ro.opengles.version=196610 \
-    ro.sf.lcd_density=420
+#    ro.sf.lcd_density=420
 
 # Display calibration
 PRODUCT_PACKAGES += \
@@ -279,7 +279,6 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
-    OneplusPocketMode \
     android.hardware.biometrics.fingerprint@2.1-service
 
 # Gatekeeper HAL
