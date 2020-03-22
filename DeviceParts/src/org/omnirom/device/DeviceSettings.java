@@ -41,6 +41,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.util.Log;
 
+import org.omnirom.device.kcal.KCalSettingsActivity;
+
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -51,6 +53,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String KEY_SLIDER_MODE_BOTTOM = "slider_mode_bottom";
     private static final String KEY_BUTTON_CATEGORY = "buttons_category";
     private static final String KEY_CATEGORY_GRAPHICS = "graphics";
+    private static final String PREF_DEVICE_KCAL = "device_kcal";
 
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
@@ -119,6 +122,14 @@ public class DeviceSettings extends PreferenceFragment implements
         buttonCategory = (PreferenceCategory) findPreference(KEY_BUTTON_CATEGORY);
         mHWKSwitch.setEnabled(HWKSwitch.isSupported());
         mHWKSwitch.setOnPreferenceChangeListener(new HWKSwitch());
+
+        Preference kcal = findPreference(PREF_DEVICE_KCAL);
+
+        kcal.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), KCalSettingsActivity.class);
+            startActivity(intent);
+            return true;
+        });
     }
 
     @Override

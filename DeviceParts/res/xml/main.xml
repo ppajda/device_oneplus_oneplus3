@@ -107,5 +107,16 @@
                     android:targetPackage="org.omnirom.device"
                     android:targetClass="org.omnirom.device.PanelSettingsActivity" />
         </Preference>
+
+        <Preference
+            android:key="device_kcal"
+            android:persistent="false"
+            android:title="@string/device_kcal_title"
+            android:icon="@drawable/ic_color">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="org.lineageos.settings.kcal.KCalSettingsActivity"
+                android:targetPackage="org.lineageos.settings.kcal" />
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
