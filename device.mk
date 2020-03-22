@@ -27,7 +27,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 $(call inherit-product, vendor/oneplus/oneplus3/oneplus3-vendor.mk)
 
 # Camera
-$(call inherit-product, vendor/addons/onepluscamera/config.mk)
+$(call inherit-product-if-exists, packages/apps/GoogleCameraPort/oneplus3/oneplus3.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
