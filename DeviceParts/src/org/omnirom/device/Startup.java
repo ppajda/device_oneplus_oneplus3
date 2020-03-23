@@ -195,6 +195,9 @@ public class Startup extends BroadcastReceiver implements KUtils {
         enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_ONEPLUS_SWITCH, false);
         restore(OnePlusModeSwitch.getFile(), enabled);
 
+        enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_DCDIM_SWITCH, false);
+        restore(DCDimSwitch.getFile(), enabled);
+
         enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_HWK_SWITCH, false);
         restore(HWKSwitch.getFile(), enabled);
 

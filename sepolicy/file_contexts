@@ -48,3 +48,4 @@
 /sys/devices/virtual/graphics/fb0/panel_serial_number           u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb0/adaption_mode                 u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb0/measured_fps                  u:object_r:sysfs_graphics:s0
+/sys/module/mdss_fb/parameters/backlight_dimmer			u:object_r:sysfs_graphics:s0

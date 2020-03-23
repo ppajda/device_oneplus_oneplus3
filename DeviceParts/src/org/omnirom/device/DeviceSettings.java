@@ -57,6 +57,7 @@ public class DeviceSettings extends PreferenceFragment implements
 
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
+    public static final String KEY_DCDIM_SWITCH = "dcdim";
     public static final String KEY_HWK_SWITCH = "hwk";
     public static final String KEY_PROXI_SWITCH = "proxi";
     public static final String KEY_DCI_SWITCH = "dci";
@@ -72,6 +73,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private ListPreference mSliderModeBottom;
     private static TwoStatePreference mHBMModeSwitch;
     private static TwoStatePreference mHWKSwitch;
+    private static TwoStatePreference mDCDimSwitch;
     private PreferenceCategory buttonCategory;
     private static Context mContext;
     private static SwitchPreference mFpsInfo;
@@ -117,6 +119,11 @@ public class DeviceSettings extends PreferenceFragment implements
         mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
         mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
         mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch());
+
+        mDCDimSwitch = (TwoStatePreference) findPreference(KEY_DCDIM_SWITCH);
+        mDCDimSwitch.setEnabled(DCDimSwitch.isSupported());
+        mDCDimSwitch.setChecked(DCDimSwitch.isCurrentlyEnabled(this.getContext()));
+        mDCDimSwitch.setOnPreferenceChangeListener(new DCDimSwitch());
 
         mHWKSwitch = (TwoStatePreference) findPreference(KEY_HWK_SWITCH);
         buttonCategory = (PreferenceCategory) findPreference(KEY_BUTTON_CATEGORY);
