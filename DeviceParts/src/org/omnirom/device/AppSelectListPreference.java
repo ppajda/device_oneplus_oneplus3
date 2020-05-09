@@ -66,6 +66,7 @@ public class AppSelectListPreference extends CustomDialogPreference {
     public static final String NAVIGATE_BACK_ENTRY = "navigate_back";
     public static final String NAVIGATE_HOME_ENTRY = "navigate_home";
     public static final String NAVIGATE_RECENT_ENTRY = "navigate_recent";
+    public static final String DOZE_PULSE_ENTRY = "doze_pulse";
 
     private AppSelectListAdapter mAdapter;
     private Drawable mAppIconDrawable;
@@ -230,6 +231,11 @@ public class AppSelectListPreference extends CustomDialogPreference {
                 R.drawable.ic_wakeup, WAKE_ENTRY);
         mInstalledPackages.add(0, wakeItem);
 
+        PackageItem pulseDoze = new PackageItem(
+                getContext().getResources().getString(R.string.doze_pulse),
+                R.drawable.ic_wakeup, DOZE_PULSE_ENTRY);
+        mInstalledPackages.add(0, pulseDoze);
+
         PackageItem disabledItem = new PackageItem(getContext().getResources().getString(R.string.disabled_entry),
                 R.drawable.ic_disabled, DISABLED_ENTRY);
         mInstalledPackages.add(0, disabledItem);
@@ -330,6 +336,9 @@ public class AppSelectListPreference extends CustomDialogPreference {
             } else if (name.equals(NAVIGATE_RECENT_ENTRY)) {
                 mTitle = getContext().getResources().getString(R.string.navigate_recent);
                 mAppIconResourceId = R.drawable.recent;
+            } else if (name.equals(DOZE_PULSE_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.doze_pulse);
+                mAppIconResourceId = R.drawable.ic_wakeup;
             } else {
                 ComponentName componentName = ComponentName.unflattenFromString(name);
                 PackageItem item = mAdapter.resolveApplication(componentName);
