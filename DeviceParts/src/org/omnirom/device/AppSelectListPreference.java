@@ -187,10 +187,15 @@ public class AppSelectListPreference extends CustomDialogPreference {
         init();
     }
 
-    public void setPackageList(List<PackageItem> installedPackages) {
+    /**
+     * Sets the list of installed packages
+     * @param installedPackages the list of installed packages
+     * @param isFP whether to add fingerprint gestures
+     */
+    public void setPackageList(List<PackageItem> installedPackages, boolean isFP) {
         mInstalledPackages.clear();
         mInstalledPackages.addAll(installedPackages);
-        addSpecialApps();
+        addSpecialApps(isFP);
         mAdapter.notifyDataSetChanged();
         updatePreferenceViews();
     }
@@ -206,7 +211,11 @@ public class AppSelectListPreference extends CustomDialogPreference {
         mAdapter = new AppSelectListAdapter(getContext());
     }
 
-    private void addSpecialApps() {
+    /**
+     * Adds gestures as PackageItems
+     * @param isFP whether to add fingerprint gestures
+     */
+    private void addSpecialApps(boolean isFP) {
         PackageItem cameraItem = new PackageItem(getContext().getResources().getString(R.string.camera_entry),
                 R.drawable.ic_camera, CAMERA_ENTRY);
         mInstalledPackages.add(0, cameraItem);
@@ -236,6 +245,43 @@ public class AppSelectListPreference extends CustomDialogPreference {
                 R.drawable.ic_wakeup, DOZE_PULSE_ENTRY);
         mInstalledPackages.add(0, pulseDoze);
 
+        PackageItem volumeUpItem = new PackageItem(
+                getContext().getResources().getString(R.string.volume_up),
+                R.drawable.ic_settings_sound, VOLUME_UP_ENTRY);
+        mInstalledPackages.add(0, volumeUpItem);
+
+        PackageItem volumeDownItem = new PackageItem(
+                getContext().getResources().getString(R.string.volume_down),
+                R.drawable.ic_settings_sound, VOLUME_DOWN_ENTRY);
+        mInstalledPackages.add(0, volumeDownItem);
+
+        if (isFP) {
+            PackageItem browseScrollDownItem = new PackageItem(
+                    getContext().getResources().getString(R.string.browse_scroll_down),
+                    R.drawable.arrow_collapse_down, BROWSE_SCROLL_DOWN_ENTRY);
+            mInstalledPackages.add(0, browseScrollDownItem);
+
+            PackageItem browseScrollUpItem = new PackageItem(
+                    getContext().getResources().getString(R.string.browse_scroll_up),
+                    R.drawable.arrow_collapse_up, BROWSE_SCROLL_UP_ENTRY);
+            mInstalledPackages.add(0, browseScrollUpItem);
+
+            PackageItem navigateBackItem = new PackageItem(
+                    getContext().getResources().getString(R.string.navigate_back),
+                    R.drawable.back, NAVIGATE_BACK_ENTRY);
+            mInstalledPackages.add(0, navigateBackItem);
+
+            PackageItem navigateHomeItem = new PackageItem(
+                    getContext().getResources().getString(R.string.navigate_home),
+                    R.drawable.home, NAVIGATE_HOME_ENTRY);
+            mInstalledPackages.add(0, navigateHomeItem);
+
+            PackageItem navigateRecentItem = new PackageItem(
+                    getContext().getResources().getString(R.string.navigate_recent),
+                    R.drawable.recent, NAVIGATE_RECENT_ENTRY);
+            mInstalledPackages.add(0, navigateRecentItem);
+        }
+        
         PackageItem disabledItem = new PackageItem(getContext().getResources().getString(R.string.disabled_entry),
                 R.drawable.ic_disabled, DISABLED_ENTRY);
         mInstalledPackages.add(0, disabledItem);
