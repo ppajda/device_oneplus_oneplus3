@@ -489,12 +489,8 @@
     <!-- Disable Navbar by default -->
     <bool name="config_defaultToNavigationBar">false</bool>
 
-    <!-- Whether the device supports Smart Pixels -->
-    <bool name="config_enableSmartPixels">true</bool>
-
-    <!-- Button brightness -->
-    <bool name="config_button_brightness_support">true</bool>
-    <integer name="config_button_brightness_default">128</integer>
+    <!-- Button backlight -->
+    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
 
     <!-- Whether device ignores the RSSNR signal implementation-->
     <bool name="config_ignoreRssnrSignalLevel">true</bool>
