@@ -23,6 +23,9 @@ $(call inherit-product, device/oneplus/oneplus3/device.mk)
 # Inherit some common AOSiP stuff.
 $(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
+# Vendor security patch level
+VENDOR_SECURITY_PATCH := 2019-10-01
+
 # Gapps
 TARGET_GAPPS_ARCH := arm64
 TARGET_BOOT_ANIMATION_RES := 1080
@@ -42,6 +45,9 @@ TARGET_VENDOR_PRODUCT_NAME := OnePlus3
 TARGET_VENDOR_DEVICE_NAME := OnePlus3
 
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=OnePlus3 PRODUCT_NAME=OnePlus3
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="OnePlus/OnePlus3/OnePlus3:9/PKQ1.181203.001/1907311932:user/release-keys"
 
 BUILD_FINGERPRINT := "OnePlus/OnePlus3/OnePlus3:9/PKQ1.181203.001/1907311932:user/release-keys"
 
